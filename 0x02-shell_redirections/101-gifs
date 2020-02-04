@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -empty | rev | cut -d "/" -f 1 | rev
+find . -name \*-gif -type f -printf "%f\n" | LC_ALL=C sort -f | rev | cut -c 5- | rev 
