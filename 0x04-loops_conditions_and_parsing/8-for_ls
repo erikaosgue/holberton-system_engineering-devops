@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Bash script that displays
+
+current_dir=$(ls ./)
+for eachfile in $current_dir; do
+    echo "${eachfile//[0-9]*\-/''}"
+
+done
