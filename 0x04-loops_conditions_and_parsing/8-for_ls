@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
-# Bash script that displays
+# Bash script that displays:
+# The content of the current directory
+# In a list format
+# Showing only the name after the first dash
 
 current_dir=$(ls)
 for eachfile in $current_dir; do
-    echo "${eachfile//[0-9]*\-/''}"
+    echo "$eachfile" | cut -d "-" -f 2
 done
