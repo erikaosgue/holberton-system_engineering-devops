@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Process and PID file
+
+trap "echo Y U no love me?!" SIGINT
+trap "rm holbertonscript.pid; echo I hate the kill command; exit" SIGTERM
+trap "rm holbertonscript.pid; exit" SIGQUIT
+echo "$$" > holbertonscript.pid
+
+while :
+do
+    echo "To infinity and beyond"
+    sleep 2
+done
