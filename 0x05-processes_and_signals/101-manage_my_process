@@ -11,12 +11,12 @@ case "$1" in
         ;;
     stop)
         echo "manage_my_process stopped"
-        pkill -f "./var/run/my_process.pid"
+        pkill -f "./manage_my_process"
         rm /var/run/my_process.pid
         exit
         ;;
     restart)
-        pkill -f "./var/run/my_process.pid"
+        pkill -f "./manage_my_process"
         rm /var/run/my_process.pid
         ./manage_my_process&
         echo "$$" > /var/run/my_process.pid
@@ -28,4 +28,4 @@ case "$1" in
         exit
         ;;
 esac
-exit $?
+exit
