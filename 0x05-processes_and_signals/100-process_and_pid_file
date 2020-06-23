@@ -2,9 +2,9 @@
 # Process and PID file
 
 trap "echo Y U no love me?!" SIGINT
-trap "rm holbertonscript.pid; echo I hate the kill command; exit" SIGTERM
-trap "rm holbertonscript.pid; exit" SIGQUIT
-echo "$$" > holbertonscript.pid
+trap "rm /var/run/holbertonscript.pid; echo I hate the kill command; exit" SIGTERM
+trap "rm /var/run/holbertonscript.pid; exit" SIGQUIT
+echo "$$" > /var/run/holbertonscript.pid
 
 while :
 do
