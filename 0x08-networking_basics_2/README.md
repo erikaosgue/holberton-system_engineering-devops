@@ -80,7 +80,7 @@ Terminal 1
 
 Connecting to localhost on port 98 using telnet and typing some text.
 
-    sylvain@ubuntu$ telnet localhost 98
+    eosorio@ubuntu$ telnet localhost 98
     Trying 127.0.0.2...
     Connected to localhost.
     Escape character is '^]'.
@@ -91,6 +91,6 @@ Terminal 0
 
 Receiving the text on the other side.
 
-    sylvain@ubuntu$ sudo ./4-port_listening_on_localhost
+    eosorio@ubuntu$ sudo ./4-port_listening_on_localhost
     Hello world
     test
