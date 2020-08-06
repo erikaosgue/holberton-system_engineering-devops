@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Not found page 404 
+
+apt-get -y update
+apt-get -y install nginx
+
+echo "Holberton School" | sudo tee /var/www/html/index.nginx-debian.html
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
+
+new_string="\\\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com;\n\t}"
+file="/etc/nginx/sites-available/default"
+sudo sed -i "19i $new_string" $file
+
+new_string="\\\terror_page 404 /custom_404.html;\n\tlocation = /custom_404.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}"
+file="/etc/nginx/sites-available/default"
+sudo sed -i "22i $new_string" $file
+
+service nginx restart
