@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# A Bash script that configures a new Ubuntu machine to respect:
+# Install nginx on your web-01 server
+# Nginx should be listening on port 80
+# When querying Nginx at its root / with a GET request (requesting a page) 
+# using curl, it must return a page that contains the string Holberton School
+# Configure Nginx so that its HTTP response contains a custom header (on web-01 and web-02
+# The name of the custom HTTP header must be X-Served-By
+# The value of the custom HTTP header must be the hostname of the server Nginx is running on
+
+apt-get -y update
+apt-get -y install nginx
+echo "Holberton School" | sudo tee /var/www/html/index.nginx-debian.html
+file="/etc/nginx/sites-available/default"
+
+header="\\\tadd_header X-Served-By $HOSTNAME;"
+sudo sed -i "19 a $header" $file
+
+new_string="\\\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com;\n\t}"
+sudo sed -i "20 a $new_string" $file
+
+new_string="\\\terror_page 404 /custom_404.html;\n\tlocation = /custom_404.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}"
+sudo sed -i "23 a $new_string" $file
+
+service nginx restart
