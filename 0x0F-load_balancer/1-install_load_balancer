@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Install your load balancer
+# Configure HAproxy with version equal or greater than 1.5 
+# so that it send traffic to web-01 and web-02
+# Distribute requests using a roundrobin algorithm
+# Make sure that HAproxy can be managed via an init script
+
+# Configuring  HAproxy (load balancer) with version equal to 1.8
+sudo apt-get install software-properties-common -y
+sudo add-apt-repository ppa:vbernat/haproxy-1.8 -y
+sudo apt-get update -y
+sudo apt-get install haproxy=1.8.\* -y
+
+echo \
+    "
+backend web-backend
+   balance roundrobin
+   server 1476-web-01 35.237.57.250:80 check
+   server 1476-web-02 34.75.204.221:80 check
+
+frontend http
+        bind *:80
+        mode http
+        default_backend servers" >> /etc/haproxy/haproxy.cfg
+
+sudo service haproxy restart
