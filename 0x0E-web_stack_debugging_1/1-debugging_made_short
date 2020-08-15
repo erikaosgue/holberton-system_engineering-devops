@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# find out whatss keeping your container ngnix from listening on port 80
+sudo sed -i -e 's/8080/80/g' /etc/nginx/sites-enabled/default
+sudo service nginx restart
