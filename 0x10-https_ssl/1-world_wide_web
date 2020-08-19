@@ -3,8 +3,8 @@
 
 func_domain () {
     output=$(dig "$2"."$1" | grep -A1 "ANSWER SECTION:" | tail -n1)
-    ip=$(echo "$output" | cut -f5)
-    record=$(echo "$output" | cut -f4)
+    ip=$(echo "$output" | cut -f4)
+    record=$(echo "$output" | cut -f3)
     echo $2 $record $ip | awk '{print "The subdomain " $1 " is a " $2 " record and points to " $3}'
 
 }
