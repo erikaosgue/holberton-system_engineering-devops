@@ -8,21 +8,22 @@ func_domain ()
     sub_3="web-02"
     sub_4="lb-01"
 
-    output=$(dig "$sub_1"".""$1" | grep -A1 "ANSWER SECTION:" | tail -n1)
+    output=$(dig "$sub_1"."$1" | grep -A1 "ANSWER SECTION:" | tail -n1)
     ip=$(echo "$output" | cut -f5)
-    echo | awk -v my_ip=$ip '{print "The subdomain www is a A record and points to " my_ip}'
-
-    output=$(dig "$sub_2"".""$1" | grep -A1 "ANSWER SECTION:" | tail -n1)
-    ip=$(echo "$output" | cut -f5)
-    echo | awk -v my_ip=$ip '{print "The subdomain web-01 is a A record and points to " my_ip}'
+    echo "The subdomain" "$sub_1" "is a A record and points to" "$ip" | awk '{print}'
     
-    output=$(dig "$sub_3"".""$1" | grep -A1 "ANSWER SECTION:" | tail -n1)
-    ip=$(echo "$output" | cut -f5)
-    echo | awk -v my_ip=$ip '{print "The subdomain web-02 is a A record and points to " my_ip}'
-    
-    output=$(dig "$sub_4"".""$1" | grep -A1 "ANSWER SECTION:" | tail -n1)
+    output=$(dig "$sub_4"."$1" | grep -A1 "ANSWER SECTION:" | tail -n1)
     ip=$(echo "$output" | cut -f5)
     echo "The subdomain" "$sub_4" "is a A record and points to" "$ip" | awk '{print}'
+
+    output=$(dig "$sub_2"."$1" | grep -A1 "ANSWER SECTION:" | tail -n1)
+    ip=$(echo "$output" | cut -f5)
+    echo "The subdomain" "$sub_2" "is a A record and points to" "$ip" | awk '{print}'
+    
+    output=$(dig "$sub_3"."$1" | grep -A1 "ANSWER SECTION:" | tail -n1)
+    ip=$(echo "$output" | cut -f5)
+    echo "The subdomain" "$sub_3" "is a A record and points to" "$ip" | awk '{print}'
+    
     
 }
 func_dom_and_sub ()
@@ -37,6 +38,6 @@ if [[ "$#" == 1 ]]
 then
     func_domain $1
 elif [[ "$#" == 2 ]]
-    then
-        func_dom_and_sub "$1" "$2"
+then
+    func_dom_and_sub "$1" "$2"
 fi
