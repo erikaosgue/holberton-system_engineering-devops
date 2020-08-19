@@ -2,9 +2,9 @@
 # will display information about subdomains
 
 func_domain () {
-    output=$(dig "$2"."$1" | grep -A1 "ANSWER SECTION:" | tail -n1)
-    ip=$(echo "$output" | cut -f4)
-    record=$(echo "$output" | cut -f3)
+    output=$(dig $2.$1 | grep -A1 "ANSWER SECTION:" | tail -n1 | tr '\t' '\n')
+    ip=$(echo "$output" | tail -n1)
+    record=$(echo "$output" | tail -n2 | head -n1)
     echo $2 $record $ip | awk '{print "The subdomain " $1 " is a " $2 " record and points to " $3}'
 
 }
