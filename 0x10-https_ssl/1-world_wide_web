@@ -1,49 +1,20 @@
 #!/usr/bin/env bash
 # will display information about subdomains
 
-func_domain () 
-{
-    sub_1="www"
-    sub_2="web-01"
-    sub_3="web-02"
-    sub_4="lb-01"
-
-    
-    output=$(dig $sub_1.$1 | grep -A1 "ANSWER SECTION:" | tail -n1)
-    ip=$(echo "$output" | cut -f5)
-    record=$(echo "$output" | cut -f4)
-    echo "The subdomain" "$sub_1" "is a" "$record" "record and points to" "$ip" | awk '{print}'
-    
-    output=$(dig $sub_4.$1 | grep -A1 "ANSWER SECTION:" | tail -n1)
-    ip=$(echo "$output" | cut -f5)
-    record=$(echo "$output" | cut -f4)
-    echo "The subdomain" "$sub_4" "is a" $record "record and points to" "$ip" | awk '{print}'
-
-    output=$(dig $sub_2.$1 | grep -A1 "ANSWER SECTION:" | tail -n1)
-    ip=$(echo "$output" | cut -f5)
-    record=$(echo "$output" | cut -f4)
-    echo "The subdomain" "$sub_2" "is a" "$record" "record and points to" "$ip" | awk '{print}'
-    
-    output=$(dig $sub_3.$1 | grep -A1 "ANSWER SECTION:" | tail -n1)
-    ip=$(echo "$output" | cut -f5)
-    record=$(echo "$output" | cut -f4)
-    echo "The subdomain" "$sub_3" "is a" "$record" "record and points to" "$ip" | awk '{print}'
-    
-    
-}
-func_dom_and_sub ()
-{
-    fulldomain=$2.$1
-    output=$(dig "$fulldomain" | grep -A1 "ANSWER SECTION:" | tail -n1)
+func_domain () {
+    output=$(dig $2.$1 | grep -A1 "ANSWER SECTION:" | tail -n1)
     ip=$(echo "$output" | cut -f5)
     record=$(echo "$output" | cut -f4)
     echo "The subdomain" "$2" "is a" "$record" "record and points to" "$ip" | awk '{print}'
-
 }
-if [[ "$#" == 1 ]]
+
+if [ "$#" == 1 ]
 then
-    func_domain "$1"
-elif [[ "$#" == 2 ]]
+  func_domain "$1" "www"
+  func_domain "$1" "lb-01"
+  func_domain "$1" "web-01"
+  func_domain "$1" "web-02"
+elif [ "$#" == 2 ]
 then
-    func_dom_and_sub "$1" "$2"
+  func_domain "$1" "$2"
 fi
