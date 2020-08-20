@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # will display information about subdomains
+# usage: ./1-world_wide_web <domain> <subdomain>
+# ej:=> ./1-world_wide_web apatite.tech web-01
 
 func_domain () {
     output=$(dig $2.$1 | grep -A1 "ANSWER SECTION:" | tail -n1 | tr '\t' '\n')
