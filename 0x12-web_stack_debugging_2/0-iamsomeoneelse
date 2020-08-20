@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-sudo -u "$1" whoami 
+# run the whoami command under the user passed as an argument
+sudo -u "$1" whoami
