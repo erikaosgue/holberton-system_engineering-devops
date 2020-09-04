@@ -4,6 +4,6 @@
 
 archive_name="$(date +'%d-%m-%y')".tar.gz
 
-mysqldump -u root -p"$1" --all-databases --opt | > backup.sql
+mysqldump -u root -p"$1" --all-databases --opt > backup.sql
 tar -czvf "${archive_name}" backup.sql
 
