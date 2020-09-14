@@ -9,10 +9,11 @@ import requests
 if __name__ == "__main__":
 
     emplyee_id = argv[1]
-    url_1 = "https://jsonplaceholder.typicode.com/users/{}".
-    format(emplyee_id)
-    url_2 = "https://jsonplaceholder.typicode.com/todos/?userId={}".
-    format(emplyee_id)
+    url_1 = """
+    https://jsonplaceholder.typicode.com/users/{}""".format(emplyee_id)
+
+    url_2 = """
+    https://jsonplaceholder.typicode.com/todos/?userId={}""".format(emplyee_id)
 
     response_employee = requests.get(url_1)
     response_task = requests.get(url_2)
