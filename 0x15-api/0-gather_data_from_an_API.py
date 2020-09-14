@@ -21,8 +21,11 @@ if __name__ == "__main__":
     dict_user = response_employee.json()
     list_task = response_task.json()
 
-    list_done_tasks = [task_dict.get(
-        "title") for task_dict in list_task if task_dict["completed"] is True]
+    list_done_tasks = [
+        task_dict.get("title")
+        for task_dict in list_task
+        if task_dict["completed"] is True
+    ]
 
     employ_name = dict_user.get("name")
     num_total_task = len(list_task)
