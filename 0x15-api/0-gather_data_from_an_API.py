@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Using this REST API <https://jsonplaceholder.typicode.com/>
 For a given employee ID, returns information about his/her TODO list progress
-Usage: 0-gather_data_from_an_API.py <EMPLOY ID ej: 2>"""
+Usage: python3 0-gather_data_from_an_API.py <EMPLOY ID ej: 2>"""
 
 from sys import argv
 import requests
