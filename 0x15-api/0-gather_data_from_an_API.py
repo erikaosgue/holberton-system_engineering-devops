@@ -27,11 +27,7 @@ if __name__ == "__main__":
         if task_dict.get("completed") is True
     ]
 
-    employ_name = dict_user.get("name")
-    num_total_task = len(list_task)
-    num_done_task = len(list_done_tasks)
-
     print("Employee {} is done with tasks({}/{}):".
-          format(employ_name, num_done_task, num_total_task))
+          format(dict_user.get("name"), len(list_done_tasks), len(list_task)))
     for task_title in list_done_tasks:
         print("\t {}".format(task_title))
