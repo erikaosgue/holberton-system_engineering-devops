@@ -3,12 +3,12 @@
 For a given employee ID, returns information about his/her TODO list progress
 Usage: python3 0-gather_data_from_an_API.py <EMPLOY ID ej: 2>"""
 
-from sys import argv
 import requests
+import sys
 
 if __name__ == "__main__":
 
-    emplyee_id = argv[1]
+    emplyee_id = sys.argv[1]
     url_1 = """
     https://jsonplaceholder.typicode.com/users/{}""".format(emplyee_id)
 
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     list_done_tasks = [
         task_dict.get("title")
         for task_dict in list_task
-        if task_dict["completed"] is True
+        if task_dict.get("completed") is True
     ]
 
     employ_name = dict_user.get("name")
