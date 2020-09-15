@@ -3,9 +3,9 @@
 data in the CSV format.
 Usage: python3 1-export_to_CSV.py 2"""
 
-from sys import argv
 import csv
 import requests
+from sys import argv
 
 if __name__ == "__main__":
 
