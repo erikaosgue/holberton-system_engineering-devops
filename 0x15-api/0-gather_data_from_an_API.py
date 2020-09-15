@@ -8,7 +8,6 @@ import sys
 
 if __name__ == "__main__":
 
-    # if len(sys.argv) > 1 and sys.argv[1].isdigit():
     emplyee_id = sys.argv[1]
     url_1 = "https://jsonplaceholder.typicode.com/users/{}".format(
         emplyee_id)
