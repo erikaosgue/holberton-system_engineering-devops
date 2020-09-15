@@ -5,11 +5,11 @@ Usage: python3 1-export_to_CSV.py 2"""
 
 import csv
 import requests
-from sys import argv
+import sys
 
 if __name__ == "__main__":
 
-    user_id = argv[1]
+    user_id = sys.argv[1]
     url_1 = "https://jsonplaceholder.typicode.com/users/{}".format(user_id)
 
     url_2 = "https://jsonplaceholder.typicode.com/todos".format(
