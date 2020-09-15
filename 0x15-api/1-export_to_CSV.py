@@ -21,23 +21,17 @@ if __name__ == "__main__":
     dict_user = response_user.json()
     list_tasks = response_task.json()
 
-    user_name = dict_user.get("username")
-    new_list_dict = []
-    for task_dict in list_tasks:
-        new_dict = {}
-        new_dict["user_id"] = user_id
-        new_dict["username"] = user_name
-        new_dict["completed"] = task_dict.get("completed")
-        new_dict["title"] = task_dict.get("title")
-        new_list_dict.append(new_dict)
-
     filename = "{}.csv".format(user_id)
     with open(filename, 'w', newline='', encoding="utf-8") as csv_file:
+        user_name = dict_user.get("username")
+        new_writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
 
-        dict_writer = csv.DictWriter(
-            csv_file,
-            new_list_dict[0].keys(),
-            quoting=csv.QUOTE_ALL)
-        # The following line is the header
-        # dict_writer.writeheader()
-        dict_writer.writerows(new_list_dict)
+        # uncomenting newxt line will add a header as first row
+        # new_writer.writerow(['user_id', 'username', 'completed', 'title'])
+        for task_dict in list_tasks:
+            new_list = []
+            new_list.append(user_id)
+            new_list.append(user_name)
+            new_list.append(task_dict.get("completed"))
+            new_list.append(task_dict.get("title"))
+            new_writer.writerow(new_list)
