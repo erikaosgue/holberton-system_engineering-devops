@@ -8,26 +8,26 @@ import sys
 
 if __name__ == "__main__":
 
-    if len(sys.argv) > 1 and sys.argv[1].isdigit():
-        emplyee_id = sys.argv[1]
-        url_1 = "https://jsonplaceholder.typicode.com/users/{}".format(
-            emplyee_id)
+    # if len(sys.argv) > 1 and sys.argv[1].isdigit():
+    emplyee_id = sys.argv[1]
+    url_1 = "https://jsonplaceholder.typicode.com/users/{}".format(
+        emplyee_id)
 
-        url_2 = "https://jsonplaceholder.typicode.com/todos"
+    url_2 = "https://jsonplaceholder.typicode.com/todos"
 
-        response_employee = requests.get(url_1)
-        response_task = requests.get(url_2, params={"userId": emplyee_id})
+    response_employee = requests.get(url_1)
+    response_task = requests.get(url_2, params={"userId": emplyee_id})
 
-        dict_user = response_employee.json()
-        list_task = response_task.json()
+    dict_user = response_employee.json()
+    list_task = response_task.json()
 
-        list_done_tasks = [
-            task_dict.get("title")
-            for task_dict in list_task
-            if task_dict.get("completed") is True
-        ]
+    list_done_tasks = [
+        task_dict.get("title")
+        for task_dict in list_task
+        if task_dict.get("completed") is True
+    ]
 
-        print("Employee {} is done with tasks({}/{}):".
-              format(dict_user.get("name"), len(list_done_tasks), len(list_task)))
-        for task_title in list_done_tasks:
-            print("\t {}".format(task_title))
+    print("Employee {} is done with tasks({}/{}):".
+          format(dict_user.get("name"), len(list_done_tasks), len(list_task)))
+    for task_title in list_done_tasks:
+        print("\t {}".format(task_title))
