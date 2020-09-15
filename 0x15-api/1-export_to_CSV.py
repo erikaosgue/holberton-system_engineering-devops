@@ -12,11 +12,11 @@ if __name__ == "__main__":
     user_id = argv[1]
     url_1 = "https://jsonplaceholder.typicode.com/users/{}".format(user_id)
 
-    url_2 = "https://jsonplaceholder.typicode.com/todos/?userId={}".format(
+    url_2 = "https://jsonplaceholder.typicode.com/todos".format(
         user_id)
 
     response_user = requests.get(url_1)
-    response_task = requests.get(url_2)
+    response_task = requests.get(url_2, params={"userId": user_id})
 
     dict_user = response_user.json()
     list_tasks = response_task.json()
