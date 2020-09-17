@@ -13,6 +13,5 @@ def number_of_subscribers(subreddit):
                         'User-agent': 'erika hbtn 1.0'})
     if resp.ok:
         results = resp.json().get("data")
-        print(results)
         return results.get("subscribers")
     return 0
